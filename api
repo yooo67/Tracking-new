@@ -1,1 +1,12 @@
+export default function handler(req, res) {
+  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  const userAgent = req.headers['user-agent'];
+  const timestamp = new Date().toISOString();
 
+  console.log('Tracking Click:', { ip, userAgent, timestamp });
+
+  // Redirect ke link asli (bisa juga diganti dari query param)
+  const target = req.query.to || 'https://www.google.com';
+  res.writeHead(302, { Location: target });
+  res.end();
+}

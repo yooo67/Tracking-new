@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buat Tracking Link</title>
+</head>
+<body>
+  <h1>Buat Tracking Link</h1>
+  <form id="form">
+    <input type="text" id="url" placeholder="Masukkan URL" required>
+    <button type="submit">Buat Link</button>
+  </form>
+
+  <p id="output"></p>
+
+  <script>
+    document.getElementById('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const url = document.getElementById('url').value;
+      const base = window.location.origin;
+      const trackingLink = base + "/api/track?target=" + encodeURIComponent(url);
+      document.getElementById('output').innerHTML = 'Tracking link: <a href="' + trackingLink + '" target="_blank">' + trackingLink + '</a>';
+    });
+  </script>
+</body>
+</html>
